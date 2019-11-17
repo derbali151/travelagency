@@ -19,7 +19,11 @@ public class VoyageServices {
 
 
     public ResponseEntity<?> createVoyage( Voyage voyage){
-
+        Optional<Voyage> optionalVoyage =voyageRepository.findById(voyage.getDestination().getId());
+        if(!optionalVoyage.isPresent()){
+            ErrorResponseModel errorResponseModel = new ErrorResponseModel("Wrong voyage id");
+            return new ResponseEntity<>(errorResponseModel,HttpStatus.BAD_REQUEST);
+        }
         voyage = voyageRepository.save(voyage);
        return  new ResponseEntity<>(voyage, HttpStatus.OK);
     }
