@@ -26,11 +26,15 @@ public class DestinationServices {
 
 
 
-    public Destination getDestinationById( Integer id){
+    public ResponseEntity<?> getDestinationById( Integer id){
 
         Optional<Destination> optionalDestination= destinationRepository.findById(id);
+        if(optionalDestination.isPresent()){
+            ErrorResponseModel errorResponseModel = new ErrorResponseModel("wrong destination id ");
+            return  new  ResponseEntity<>(errorResponseModel , HttpStatus.BAD_REQUEST);
+        }
         Destination destination = optionalDestination.get();
-        return destination;
+        return new ResponseEntity<>(destination , HttpStatus.OK);
     }
 
     public List<Destination> getDestination(){
