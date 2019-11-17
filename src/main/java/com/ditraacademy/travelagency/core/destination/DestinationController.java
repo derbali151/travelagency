@@ -20,7 +20,7 @@ public class DestinationController {
 
 
     @GetMapping("/destination/{id}")
-    public Destination getDestinationById(@PathVariable Integer id){
+    public ResponseEntity<?> getDestinationById(@PathVariable Integer id){
         return destinationServices.getDestinationById(id);
     }
 
