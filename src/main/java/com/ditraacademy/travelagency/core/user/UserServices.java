@@ -1,18 +1,23 @@
-package com.ditraacademy.travelagency.core;
+package com.ditraacademy.travelagency.core.user;
 
 import com.ditraacademy.travelagency.utility.ErrorResponseModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
 
+
+@Service
 public class UserServices {
+
     @Autowired
-    UserResporitory userResporitory;
+    UserRepository userResporitory;
+
 
     public ResponseEntity<?> createUserService(@RequestBody User user) {
 
@@ -44,7 +49,7 @@ public class UserServices {
     public  ResponseEntity<?> deletUser(@PathVariable int id){
 
         Optional<User> userOptional =userResporitory.findById(id);
-        if(userOptional.isPresent()){
+        if(!userOptional.isPresent()){
             return new ResponseEntity<>(new ErrorResponseModel("Invalid id "),HttpStatus.BAD_REQUEST);
         } else {
             userResporitory.deleteById(id);
