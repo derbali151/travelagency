@@ -41,4 +41,10 @@ public class VoyageController {
         return  voyageServices.deleteVoyage(id);
 
     }
+
+    @GetMapping("/voyages/priceBetween")
+    public ResponseEntity<?> findAllByPrixBetweenAndNbPlacesNot (@RequestParam double max , @RequestParam double min){
+        return voyageServices.findAllByPrixBetweenAndNbPlacesNot(max, min);
+    }
+
 }

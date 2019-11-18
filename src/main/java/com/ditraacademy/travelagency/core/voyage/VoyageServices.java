@@ -88,6 +88,15 @@ public class VoyageServices {
 
     }
 
+    public ResponseEntity<?> findAllByPrixBetweenAndNbPlacesNot( double max ,  double min){
+
+       List<Voyage> voyages = voyageRepository.findAllByPrixBetweenAndNbPlacesNot(min, max,0);
+
+
+        return new ResponseEntity<>(voyages,HttpStatus.OK);
+
+    }
+
 
 
 
