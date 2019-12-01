@@ -19,16 +19,18 @@ public class VoyageController {
         return  voyageServices.createVoyage(voyage);
     }
 
+    @GetMapping("/voyages")
+    public ResponseEntity<?> getAllVoyage(){
+        return voyageServices.getAllVoyage();
+    }
+
 
     @GetMapping("/voyage/{id}")
     public  ResponseEntity<?> getVoyageById(@PathVariable Integer id){
         return voyageServices.getVoyageById(id);
     }
 
-    @GetMapping("/voyages")
-    public List<Voyage> getVoyage(){
-        return voyageServices.getVoyage();
-    }
+
 
 
     @PutMapping("/voyage/{id}")

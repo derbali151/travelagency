@@ -25,16 +25,22 @@ public class Voyage  extends Audible<String> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String titre;
 
     @Column(columnDefinition = "text")
     private String description;
+
     private Date date;
+
     private  Integer nbPlaces;
+
     private  Double prix;
-   @ManyToOne
+
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private  Destination destination;
-   @JsonIgnore
+
+    @JsonIgnore
     private boolean deleted = false;
 
 
