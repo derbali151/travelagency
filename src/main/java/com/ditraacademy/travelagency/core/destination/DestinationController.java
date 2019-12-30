@@ -1,6 +1,8 @@
 package com.ditraacademy.travelagency.core.destination;
 
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,6 +11,7 @@ import java.util.List;
 
 
 @RestController
+@Api(tags = "Destination")
 public class DestinationController {
     @Autowired
     DestinationServices destinationServices;
@@ -20,6 +23,7 @@ public class DestinationController {
 
 
     @GetMapping("/destination/{id}")
+    @ApiOperation(value = "Destination", response = Destination.class)
     public ResponseEntity<?> getDestinationById(@PathVariable Integer id){
         return destinationServices.getDestinationById(id);
     }
